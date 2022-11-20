@@ -17,7 +17,12 @@ public class Main {
                             TaskService.deleteTask();
                             break;
                         case 3:
+                            TaskService.editTask();
+                        case 4:
                             TaskService.giveTasksOnDay();
+                            break;
+                        case 5:
+                            System.out.println(TaskService.getDeleteTask());
                             break;
                         case 0:
                             break label;
@@ -34,7 +39,9 @@ public class Main {
 
         System.out.println("1. Добавить задачу");
         System.out.println("2. Удалить задачу");
-        System.out.println("3. Получить задачу на указанный день");
+        System.out.println("3. Редактировать задачу");
+        System.out.println("4. Получить задачу на указанный день");
+        System.out.println("5. Получить удаленные задачи");
         System.out.println("0. Выход");
 
     }

@@ -12,6 +12,8 @@ public abstract class Task implements Repeatability {
 
     private LocalDate date;
 
+    private boolean isDelTask;
+
     private static int generator;
     private int id;
 
@@ -28,15 +30,22 @@ public abstract class Task implements Repeatability {
         }
 
         this.date = date;
-
-        id = generator++;
-
         this.personalTask = personalTask;
+        this.isDelTask = false;
+        id = generator++;
 
     }
 
     public String getTitle() {
         return titleTask;
+    }
+
+    public void setTitleTask(String titleTask) {
+        this.titleTask = titleTask;
+    }
+
+    public void setDescriptionTask(String descriptionTask) {
+        this.descriptionTask = descriptionTask;
     }
 
     public String getDescription() {
@@ -55,6 +64,14 @@ public abstract class Task implements Repeatability {
         return date;
     }
 
+    public boolean isDelTask() {
+        return isDelTask;
+    }
+
+    public void setDelTask() {
+        this.isDelTask = !isDelTask;
+    }
+
     @Override
     public abstract boolean relevanceTask(LocalDate date);
 
@@ -63,13 +80,12 @@ public abstract class Task implements Repeatability {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return personalTask == task.personalTask && id == task.id && Objects.equals(titleTask, task.titleTask)
-                && Objects.equals(descriptionTask, task.descriptionTask) && Objects.equals(date, task.date);
+        return titleTask.equals(task.titleTask) && date.equals(task.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(titleTask, descriptionTask, personalTask, date, id);
+        return Objects.hash(titleTask, date);
     }
 
     @Override

@@ -6,6 +6,12 @@ import java.util.Scanner;
 
 public class TaskService {
 
+    private static List<Task> deleteTask = new ArrayList<>();
+
+    public static List<Task> getDeleteTask() {
+        return deleteTask;
+    }
+
     public static void addTask() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Введите заголовок задачи: ");
@@ -70,29 +76,29 @@ public class TaskService {
         List<Task> tasksOnDay = new ArrayList<>();
 
         for (Task taskCount : OneTimeTask.oneTimeTasks.values()) {
-            if (taskCount.relevanceTask(date)) {
+            if (taskCount.relevanceTask(date) && !taskCount.isDelTask()) {
                 tasksOnDay.add(taskCount);
             }
         }
         System.out.println(tasksOnDay);
 
         for (Task taskCount : DailyTask.dailyTasks.values()) {
-            if (taskCount.relevanceTask(date)) {
+            if (taskCount.relevanceTask(date) && !taskCount.isDelTask()) {
                 tasksOnDay.add(taskCount);
             }
         }
         for (Task taskCount : WeeklyTask.weeklyTasks.values()) {
-            if (taskCount.relevanceTask(date)) {
+            if (taskCount.relevanceTask(date) && !taskCount.isDelTask()) {
                 tasksOnDay.add(taskCount);
             }
         }
         for (Task taskCount : MonthlyTask.monthlyTasks.values()) {
-            if (taskCount.relevanceTask(date)) {
+            if (taskCount.relevanceTask(date) && !taskCount.isDelTask()) {
                 tasksOnDay.add(taskCount);
             }
         }
         for (Task taskCount : AnnualTask.annualTasks.values()) {
-            if (taskCount.relevanceTask(date)) {
+            if (taskCount.relevanceTask(date) && !taskCount.isDelTask()) {
                 tasksOnDay.add(taskCount);
             }
         }
@@ -107,19 +113,52 @@ public class TaskService {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите ID задачи");
         int id = scanner.nextInt();
-        if (OneTimeTask.oneTimeTasks.containsKey(id)) {
-            OneTimeTask.oneTimeTasks.remove(id);
-        } else if (DailyTask.dailyTasks.containsKey(id)) {
-            DailyTask.dailyTasks.remove(id);
-        } else if (WeeklyTask.weeklyTasks.containsKey(id)) {
-            WeeklyTask.weeklyTasks.remove(id);
-        } else if (MonthlyTask.monthlyTasks.containsKey(id)) {
-            MonthlyTask.monthlyTasks.remove(id);
-        } else if (AnnualTask.annualTasks.containsKey(id)) {
-            AnnualTask.annualTasks.remove(id);
-        }
+        Task delTask = searchById(id);
+        deleteTask.add(delTask);
+        delTask.setDelTask();
+
+//        if (OneTimeTask.oneTimeTasks.containsKey(id)) {
+//            OneTimeTask.oneTimeTasks.remove(id);
+//            deleteTask.add(OneTimeTask.oneTimeTasks.get(id));
+//        } else if (DailyTask.dailyTasks.containsKey(id)) {
+//            DailyTask.dailyTasks.remove(id);
+//            deleteTask.add(DailyTask.dailyTasks.get(id));
+//        } else if (WeeklyTask.weeklyTasks.containsKey(id)) {
+//            WeeklyTask.weeklyTasks.remove(id);
+//            deleteTask.add(WeeklyTask.weeklyTasks.get(id));
+//        } else if (MonthlyTask.monthlyTasks.containsKey(id)) {
+//            MonthlyTask.monthlyTasks.remove(id);
+//            deleteTask.add(MonthlyTask.monthlyTasks.get(id));
+//        } else if (AnnualTask.annualTasks.containsKey(id)) {
+//            AnnualTask.annualTasks.remove(id);
+//            deleteTask.add(AnnualTask.annualTasks.get(id));
+//        }
+//        System.out.println(deleteTask);
     }
 
+    public static void editTask() {
+        Scanner scanner = new Scanner(System.in);
+        scanner.useDelimiter("\n");
+        System.out.println("Введите id задачи");
+        int id = 0;
+        if (scanner.hasNextInt()) {
+            id = scanner.nextInt();
+            scanner.reset();
+        } else editTask();
+        Task editTask = searchById(id);
+
+        Scanner scanner1 = new Scanner(System.in);
+        System.out.println("Введите новый заголовок задачи");
+        String newTittle = scanner1.nextLine();
+        editTask.setTitleTask(newTittle);
+
+
+        Scanner scanner2 = new Scanner(System.in);
+        System.out.println("Введите новое описание задачи");
+        String newDescription = scanner2.nextLine();
+        editTask.setDescriptionTask(newDescription);
+
+    }
 
     private static Task searchById(int id) {
         if (OneTimeTask.oneTimeTasks.containsKey(id)) {
