@@ -5,24 +5,23 @@ import java.util.Map;
 
 public class OneTimeTask extends Task{
 
-    public static Map <Integer, Task> oneTimeTasks = new HashMap<>();
+//    public static Map <Integer, Task> oneTimeTasks = new HashMap<>();
 
     public OneTimeTask(String title, String description, boolean personalTask, LocalDate date) {
         super(title, description, personalTask, date);
-        addOneTimeTask(this);
-    }
 
+    }
 
     @Override
     public boolean relevanceTask(LocalDate date) {
-        System.out.println(oneTimeTasks);
+//        System.out.println(oneTimeTasks);
         if (date.equals(getDate())) {
             return true;
         } else return false;
     }
 
-    public void addOneTimeTask(OneTimeTask task) {
-        oneTimeTasks.put(task.getId(), task);
-    }
+//    public void addOneTimeTask(TaskService task) {
+//        task.addTask();
+//    }
 
 }

@@ -4,11 +4,11 @@ import java.util.Map;
 
 public class AnnualTask extends Task {
 
-    public static Map <Integer, AnnualTask> annualTasks = new HashMap<>();
+//    public static Map <Integer, AnnualTask> annualTasks = new HashMap<>();
 
     public AnnualTask(String title, String description, boolean personalTask, LocalDate date) {
         super(title, description, personalTask, date);
-        addAnnualTask(this);
+
     }
 
 
@@ -23,10 +23,10 @@ public class AnnualTask extends Task {
         } return false;
     }
 
-    public void addAnnualTask(AnnualTask task) {
-        annualTasks.put(task.getId(), task);
-        System.out.println(annualTasks);
-    }
+//    public void addAnnualTask(AnnualTask task) {
+//        annualTasks.put(task.getId(), task);
+//        System.out.println(annualTasks);
+//    }
 
 
 

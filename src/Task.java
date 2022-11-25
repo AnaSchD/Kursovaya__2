@@ -1,19 +1,13 @@
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
-public abstract class Task implements Repeatability {
+public abstract class Task implements Repeatability  {
 
     private String titleTask;
-
     private String descriptionTask;
-
     private boolean personalTask;
-
     private LocalDate date;
-
-    private boolean isDelTask;
-
+    private boolean delTask;
     private static int generator;
     private int id;
 
@@ -31,14 +25,11 @@ public abstract class Task implements Repeatability {
 
         this.date = date;
         this.personalTask = personalTask;
-        this.isDelTask = false;
+        this.delTask = false;
         id = generator++;
 
     }
 
-    public String getTitle() {
-        return titleTask;
-    }
 
     public void setTitleTask(String titleTask) {
         this.titleTask = titleTask;
@@ -46,14 +37,6 @@ public abstract class Task implements Repeatability {
 
     public void setDescriptionTask(String descriptionTask) {
         this.descriptionTask = descriptionTask;
-    }
-
-    public String getDescription() {
-        return descriptionTask;
-    }
-
-    public boolean getType() {
-        return personalTask;
     }
 
     public int getId() {
@@ -65,11 +48,12 @@ public abstract class Task implements Repeatability {
     }
 
     public boolean isDelTask() {
-        return isDelTask;
+        return delTask;
     }
 
+
     public void setDelTask() {
-        this.isDelTask = !isDelTask;
+        this.delTask = delTask;
     }
 
     @Override

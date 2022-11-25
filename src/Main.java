@@ -2,27 +2,30 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
         try (Scanner scanner = new Scanner(System.in)) {
             label:
             while (true) {
                 printMenu();
+                TaskService taskService = new TaskService();
                 System.out.print("Выберите пункт меню: ");
                 if (scanner.hasNextInt()) {
                     int menu = scanner.nextInt();
                     switch (menu) {
                         case 1:
-                            TaskService.addTask();
+                            taskService.addTask();
                             break;
                         case 2:
-                            TaskService.deleteTask();
+                            taskService.deleteTask();
                             break;
                         case 3:
-                            TaskService.editTask();
+                            taskService.editTask();
+                            break;
                         case 4:
-                            TaskService.giveTasksOnDay();
+                            taskService.giveTasksOnDay();
                             break;
                         case 5:
-                            System.out.println(TaskService.getDeleteTask());
+                            System.out.println(taskService.getDelTasks());
                             break;
                         case 0:
                             break label;

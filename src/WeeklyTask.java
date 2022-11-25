@@ -4,11 +4,11 @@ import java.util.Map;
 
 public class WeeklyTask extends Task  {
 
-    public static Map <Integer, WeeklyTask> weeklyTasks = new HashMap<>();
+//    public static Map <Integer, WeeklyTask> weeklyTasks = new HashMap<>();
 
     public WeeklyTask(String title, String description, boolean personalTask, LocalDate date) {
         super(title, description, personalTask, date);
-        addWeeklyTask(this);
+
     }
 
 
@@ -19,13 +19,13 @@ public class WeeklyTask extends Task  {
         } else return false;
     }
 
-    public void addWeeklyTask(WeeklyTask task) {
-        weeklyTasks.put(task.getId(), task);
-    }
+//    public void addWeeklyTask(WeeklyTask task) {
+//        weeklyTasks.put(task.getId(), task);
+//    }
 
-    public Map<Integer, WeeklyTask> getWeeklyTask() {
-        return weeklyTasks;
-    }
+//    public Map<Integer, WeeklyTask> getWeeklyTask() {
+//        return weeklyTasks;
+//    }
 
 
 }

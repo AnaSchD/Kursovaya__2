@@ -6,11 +6,11 @@ import java.util.Set;
 
 public class MonthlyTask extends Task {
 
-    public static Map <Integer, MonthlyTask> monthlyTasks = new HashMap<>();
+//    public static Map <Integer, MonthlyTask> monthlyTasks = new HashMap<>();
 
     public MonthlyTask(String title, String description, boolean personalTask, LocalDate date) {
         super(title, description, personalTask, date);
-        addMonthlyTask(this);
+
     }
 
     @Override
@@ -22,13 +22,13 @@ public class MonthlyTask extends Task {
     }
 
 
-    public void addMonthlyTask(MonthlyTask task) {
-        monthlyTasks.put(task.getId(), task);
-    }
-
-    public Map<Integer, MonthlyTask> getMonthlyTasks() {
-        return monthlyTasks;
-    }
+//    public void addMonthlyTask(MonthlyTask task) {
+//        monthlyTasks.put(task.getId(), task);
+//    }
+//
+//    public Map<Integer, MonthlyTask> getMonthlyTasks() {
+//        return monthlyTasks;
+//    }
 
 
 }
